@@ -29,3 +29,22 @@ CREATE Table products (
     quantity int NOT NULL DEFAULT 0,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
+
+INSERT INTO products(id, name, price, quantity)
+VALUES ('P0001', 'Pensil', 1000, 100);
+
+INSERT INTO products(id, name, description, price, quantity)
+VALUES ('P0002', 'Penghapus', 'Penghapus warna', 2000, 200);
+
+
+insert into products(id, name, price, quantity)
+values ('P0003', 'Mie Ayam Ceker', 20000, 100),
+       ('P0004', 'Mie Ayam Spesial', 25000, 100),
+       ('P0005', 'Mie Ayam Yamin', 15000, 100);
+
+SELECT * FROM products;
+
+SELECT id, name, price, quantity from products;
+
+alter table products
+    add PRIMARY KEY (id);
