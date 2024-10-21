@@ -220,3 +220,67 @@ select cos(10), sin(10), tan(10);
 
 select id, name, power(quantity, 2) as quantity_power_2
 from products;
+
+create table admin
+(
+    id         serial       not null,
+    first_name varchar(100) not null,
+    last_name  varchar(100),
+    primary key (id)
+);
+
+insert into admin(first_name, last_name)
+values ('Eko', 'Khannedy'),
+       ('Budi', 'Nugraha'),
+       ('Joko', 'Morro');
+
+select * from admin;
+
+select currval('admin_id_seq');
+
+create sequence contoh_sequence;
+
+select nextval('contoh_sequence');
+
+select currval('contoh_sequence');
+
+select id, name, description
+from products;
+
+select id, lower(name), length(name), lower(description)
+from products;
+
+select *
+from products;
+
+select id, extract(year from created_at) as Year, extract(month from created_at) as Month
+from products;
+
+select id, category
+from products;
+
+select id,
+       category,
+       case category
+           when 'Makanan' then 'Enak'
+           when 'Minuman' then 'Seger'
+           else 'Apa itu?'
+           end as category_case
+from products;
+
+select id,
+       price,
+       case
+           when price <= 15000 then 'Murah'
+           when price <= 20000 then 'Mahal'
+           else 'Mahal Banget'
+           end as "apakah murah?"
+from products;
+
+select id,
+       name,
+       case
+           when description is null then 'kosong'
+           else description
+           end as description
+from products;
