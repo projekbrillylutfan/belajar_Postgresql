@@ -200,3 +200,23 @@ from products
 where price > 0
 order by price asc, id desc
 limit 2 offset 2;
+
+select category
+from products;
+
+select distinct category
+from products;
+
+select 10 + 10 as hasil;
+
+select id, name, price / 1000 as price_in_k
+from products;
+
+select pi();
+
+select power(10, 2);
+
+select cos(10), sin(10), tan(10);
+
+select id, name, power(quantity, 2) as quantity_power_2
+from products;
