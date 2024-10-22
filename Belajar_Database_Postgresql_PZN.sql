@@ -819,3 +819,49 @@ from products
 where id = 'P0002' for update;
 
 rollback;
+
+select current_schema();
+
+create schema contoh;
+
+drop schema contoh;
+
+SET search_path TO contoh;
+
+select current_schema();
+
+select *
+from public.products;
+
+create table contoh.products
+(
+    id   serial       not null,
+    name varchar(100) not null,
+    primary key (id)
+);
+
+select * from contoh.products;
+
+SET search_path TO public;
+
+insert into contoh.products(name)
+values ('iphone'),
+       ('Play Station');
+
+select * from contoh.products;
+
+create role eko;
+create role budi;
+
+drop role eko;
+drop role budi;
+
+alter role eko login password 'rahasia';
+
+alter role budi login password 'rahasia';
+
+grant insert, update, select on all tables in schema public to eko;
+grant usage, select, update ON guestbooks_id_seq TO eko;
+grant insert, update, select on customer to budi;
+
+create database belajar_restore;
