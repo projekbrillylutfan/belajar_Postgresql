@@ -724,3 +724,98 @@ from (select email
       select email
       from guestbooks) as contoh
 group by email;
+
+select email
+from customer
+intersect
+select email
+from guestbooks;
+
+select email
+from customer
+except
+select email
+from guestbooks;
+
+start transaction;
+
+insert into guestbooks(email, title, content)
+values ('transaction@pzn.com', 'transaction', 'transaction');
+
+insert into guestbooks(email, title, content)
+values ('transaction@pzn.com', 'transaction', 'transaction 2');
+
+insert into guestbooks(email, title, content)
+values ('transaction@pzn.com', 'transaction', 'transaction 3');
+
+insert into guestbooks(email, title, content)
+values ('transaction@pzn.com', 'transaction', 'transaction 4');
+
+insert into guestbooks(email, title, content)
+values ('transaction@pzn.com', 'transaction', 'transaction 5');
+
+select *
+from guestbooks;
+
+commit;
+
+start transaction;
+
+insert into guestbooks(email, title, content)
+values ('transaction@pzn.com', 'transaction', 'rollback');
+
+insert into guestbooks(email, title, content)
+values ('transaction@pzn.com', 'transaction', 'rollback 2');
+
+insert into guestbooks(email, title, content)
+values ('transaction@pzn.com', 'transaction', 'rollback 3');
+
+insert into guestbooks(email, title, content)
+values ('transaction@pzn.com', 'transaction', 'rollback 4');
+
+insert into guestbooks(email, title, content)
+values ('transaction@pzn.com', 'transaction', 'rollback 5');
+
+select *
+from guestbooks;
+
+rollback;
+
+select *
+from products;
+
+start transaction;
+
+update products
+set description = 'Mie ayam original enak'
+where id = 'P0001';
+
+select *
+from products
+where id = 'P0001';
+
+commit;
+
+start transaction;
+
+select *
+from products
+where id = 'P0001' for update;
+
+rollback;
+
+select *
+from products
+where id = 'P0001';
+
+start transaction;
+
+select *
+from products
+where id = 'P0001' for update;
+
+select *
+from products
+where id = 'P0002' for update;
+
+rollback;
